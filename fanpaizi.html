@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+    <title>翻牌子</title>
+    <link rel="stylesheet" href="./page_files/animate.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style-type: none;
+        }
+        body {
+            font: 14px "Microsoft Yahei";
+            overflow-x: hidden;
+            background-color: #2B2B2B;
+        }
+        h1 {
+            width: 900px;
+            margin: 50px auto 50px;
+            font: 50px "Microsoft Yahei";
+            text-align: center;
+            color: #D3D3D3;
+        }
+    </style>
+    <script src="./page_files/jquery-1.8.3.min.js"></script>
+    <script src="./paizi.txt"></script>
+    <script>
+    $(function(){
+        var $animate = $('#animate');
+        var $opposite = $('#opposite');
+        $(".well-item").click(function(){
+            if($(this).find(".correct").children().hasClass("test2"))
+            {
+                $(this).find(".correct").children().removeClass();
+                $(this).find(".opposite").children().removeClass();
+                $(this).find(".correct").children().addClass("test");
+                $(this).find(".opposite").children().addClass('test2');
+            }
+            else
+            {
+                $(this).find(".correct").children().removeClass();
+                $(this).find(".opposite").children().removeClass();
+                $(this).find(".correct").children().addClass("test2");
+                $(this).find(".opposite").children().addClass('test');
+            }
+
+        });
+    });
+    $(document).ready(function(){
+        var items = $(".opposite-content-text")
+        var food_arr = foods.split(",");
+        var i = 0;
+        for(i = 0; i < items.length; i++)
+        {
+            if(i < food_arr.length)
+                items[i].innerText = food_arr[i];
+            else
+                items[i].innerText = "";
+        }
+    });
+    </script>
+</head>
+<body>
+
+<h1>翻牌子有惊喜</h1>
+<div class="well">
+	<div class="well-item">
+		<div class="correct"><img class="test2" src="./page_files/pro1.jpg"></div>
+		<div class="opposite">
+			<div class="hide">
+				<div class="opposite-content">
+                    <div style="position:absolute; display: block;"><img src="./page_files/opposite.png"></div>
+					<div class="opposite-content-text">
+						热狗
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="well-item">
+		<div class="correct"><img class="test2" src="./page_files/pro2.jpg"></div>
+		<div class="opposite">
+			<div class="hide">
+				<div class="opposite-content">
+                    <div style="position:absolute; display: block;"><img src="./page_files/opposite.png"></div>
+					<div class="opposite-content-text">
+						哈密瓜
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="well-item">
+		<div class="correct"><img class="test2" src="./page_files/pro3.jpg"></div>
+		<div class="opposite">
+			<div class="hide">
+				<div class="opposite-content">
+                    <div style="position:absolute; display: block;"><img src="./page_files/opposite.png"></div>
+					<div class="opposite-content-text">
+						香蕉
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="well-item">
+		<div class="correct"><img class="test2" src="./page_files/pro4.jpg"></div>
+		<div class="opposite">
+			<div class="hide">
+				<div class="opposite-content">
+                    <div style="position:absolute; display: block;"><img src="./page_files/opposite.png"></div>
+					<div class="opposite-content-text">
+						可乐
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+</html>

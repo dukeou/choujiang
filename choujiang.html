@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="./page_files/base.css" type="text/css">
+    <link rel="stylesheet" href="./page_files/animate.css">
+	<style type="text/css">
+		#lottery {
+			width: 654px;
+			height: 654px;
+			margin: 10px auto 0;
+		}
+		.turn_1, .turn_2, .turn_3, .turn_4, .turn_5, .turn_6, .turn_7, .turn_8, .turn_0 {
+			width: 208px;
+			height: 208px;
+			float: left;
+			position: relative;
+		}
+		.turn_5, .turn_6, .turn_8, .turn_0, .turn_2, .turn_3 {
+			margin-right: 10px;
+		}
+		.turn_8, .turn_0, .turn_1, .turn_2, .turn_3, .turn_4 {
+			margin-top: 10px;
+		}
+        .turn_all {
+			width: 208px;
+			height: 208px;
+			float: left;
+			position: relative;
+			margin-right: 5px;
+			margin-left: 5px;
+			margin-top: 5px;
+			margin-bottom: 5px;
+        }
+		.lottery-unit img {
+			width: 208px;
+			height: 208px;
+		}
+		.lottery-removed img {
+			width: 208px;
+			height: 208px;
+		}
+		.active .mask {
+			display: block;
+		}
+        .mask-content{ 
+			width: 100%;
+			height: 100%;
+            position: absolute;
+            display: block;
+            background-color: #D95E22;
+        }
+        .mask-content-text{ 
+			width: 100%;
+			height: 100%;
+            position: absolute;
+            display: block;
+            text-align: center;
+            color: white;
+            font-size: 45px;
+        }
+		.mask {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: url(page_files/turn_active.png) no-repeat;
+			display: none;
+		}
+		.rand_btn {
+			margin: 10px auto 0;
+			display: block;
+			width: 100px;
+			height: 40px;
+            text-align: center;
+            color: white;
+            font-size: 25px;
+			background-size: 40px 40px;
+            background-color: #000033;
+		}
+	</style>
+	<script src="./page_files/jquery-1.8.3.min.js"></script>
+    <script src="./timu.txt"></script>
+    <script>
+        $(document).ready(function(){
+            var items = $(".mask-content-text")
+            var category_arr = category.split(",");
+            var i = 0;
+            var j = 0;
+            for(; j < items.length; j++)
+            {
+                if(i < category_arr.length)
+                {
+                    items[j].innerText = category_arr[i];
+                    i++;
+                }
+                if(i >= category_arr.length)
+                    i = 0;
+            }
+        });
+    </script>
+</head>
+<body>
+	<ul id="lottery" class="clearfix">
+		<li class="lottery-unit turn_all active">
+			<div class="mask-content">
+                <div class="mask-content-text"></div>
+            </div>
+            <div class="correct">
+                <img src="./page_files/turn_1.jpg">
+            </div>
+			<div class="mask"></div>
+		</li>
+		<li class="lottery-unit turn_all">
+			<div class="mask-content">
+                <div class="mask-content-text"></div>
+            </div>
+            <div class="correct">
+                <img src="./page_files/turn_2.jpg">
+            </div>
+			<div class="mask"></div>
+		</li>
+		<li class="lottery-unit turn_all">
+			<div class="mask-content">
+                <div class="mask-content-text"></div>
+            </div>
+            <div class="correct">
+                <img src="./page_files/turn_3.jpg">
+            </div>
+			<div class="mask"></div>
+		</li>
+		<li class="lottery-unit turn_all">
+			<div class="mask-content">
+                <div class="mask-content-text"></div>
+            </div>
+            <div class="correct">
+			<img src="./page_files/turn_4.jpg">
+            </div>
+			<div class="mask"></div>
+		</li>
+		<li class="lottery-removed turn_all">
+            <div class="correct">
+			<img src="./page_files/turn_5.jpg">
+		</li>
+		<li class="lottery-unit turn_all">
+			<div class="mask-content">
+                <div class="mask-content-text"></div>
+            </div>
+            <div class="correct">
+			<img src="./page_files/turn_6.jpg">
+            </div>
+			<div class="mask"></div>
+		</li>
+		<li class="lottery-unit turn_all">
+			<div class="mask-content">
+                <div class="mask-content-text"></div>
+            </div>
+            <div class="correct">
+			<img src="./page_files/turn_7.jpg">
+            </div>
+			<div class="mask"></div>
+		</li>
+		<li class="lottery-unit turn_all">
+			<div class="mask-content">
+                <div class="mask-content-text"></div>
+            </div>
+            <div class="correct">
+			<img src="./page_files/turn_8.jpg">
+            </div>
+			<div class="mask"></div>
+		</li>
+		<li class="lottery-unit turn_all">
+			<div class="mask-content">
+                <div class="mask-content-text"></div>
+            </div>
+            <div class="correct">
+			<img src="./page_files/turn_9.jpg">
+            </div>
+			<div class="mask"></div>
+		</li>
+	</ul>
+	<a class="rand_btn" href="javascript:void(0);">选题</a>
+
+<script type="text/javascript">
+	var click = false;
+	var scratchableLatex = {
+		index: -1,     //当前转动到哪个位置，起点位置
+		count: 0,      //总共有多少个位置
+		timer: 0,      //setTimeout的ID，用clearTimeout清除
+		speed: 100,    //初始转动速度
+		times: 0,      //转动次数
+		cycle: 50,     //转动基本次数：即至少需要转动多少次再进入抽奖环节
+		prize: -1,     //中奖位置
+        lastIndex: -1,
+		init: function(){
+			this.bindEvent();
+			this.lotteryInit('lottery');
+		},
+		bindEvent: function(){
+			var that = this;
+			$('body').on('click', '.rand_btn', function(){         
+				if (click) {
+					//click控制一次抽奖过程中不能重复点击抽奖按钮，后面的点击不响应                            
+					return false;
+				}else{
+					that.rotateFunc();  // 转圈过程不响应click事件，会将click置为false
+					click = true;       // 一次抽奖完成后，设置click为true，可继续抽奖 
+					return false;
+				}
+			})
+		},
+		lotteryInit: function(id) {
+			if ($('#' + id).find('.lottery-unit').length > 0) {
+				$lottery = $('#' + id);
+				$units = $lottery.find('.lottery-unit');
+                var len = $units.length;
+                var id = 0;
+                for(; id < len; id++)
+                {
+                    $units[id].id = "index_" + id;
+                }
+				this.obj = $lottery;
+				this.count = $units.length;
+				$lottery.find('.turn_' + this.index).addClass('active');
+			};
+		},
+		roll: function() {
+			var index = this.index;
+			var count = this.count;
+			var lottery = this.obj;
+			$(lottery).find('#index_' + index).removeClass('active');
+			index += 1;
+			if (index > count - 1) {
+				index = 0;
+			};
+			$(lottery).find('#index_' + index).addClass('active');
+			this.index = index;
+			return false;
+		},
+		rotateFunc: function(){
+            var lottery = this.obj;
+            if(this.lastIndex != -1)
+            {
+                $(lottery).find('#index_' + this.lastIndex).find('.correct').removeClass('test');
+                $(lottery).find('#index_' + this.index).find('.mask-content').removeClass('test2');
+                $(lottery).find('#index_' + this.lastIndex).find('.correct').addClass('test2');
+                $(lottery).find('#index_' + this.index).find('.mask-content').addClass('test');
+                this.lastIndex = -1;
+            }
+			var that = this;
+			this.times += 1;
+			this.roll();
+			if (this.times > this.cycle + 10 && this.prize == this.index) {
+                $(lottery).find('#index_' + this.index).find('.correct').removeClass('test2');
+                $(lottery).find('#index_' + this.index).find('.mask-content').removeClass('test');
+                $(lottery).find('#index_' + this.index).find('.correct').addClass('test');
+                $(lottery).find('#index_' + this.index).find('.mask-content').addClass('test2');
+				clearTimeout(this.timer);
+				this.prize = -1;
+				this.times = 0;
+                this.lastIndex = this.index;
+				click = false;
+                $(lottery).find('#index_' + this.index).removeClass('active');
+			}else {
+				if (this.times < this.cycle) {
+					this.speed -= 10;
+				}else if (this.times == this.cycle) {
+					var index = Math.random() * (this.count) | 0;
+					this.prize = index;
+				}else {
+					if (this.times > this.cycle + 10 && ((this.prize == 0 && this.index == 7) || this.prize == this.index + 1)) {
+						this.speed += 80;
+					}else {
+						this.speed += 20;
+					}
+				}
+				if (this.speed < 40) {
+					this.speed = 40;
+				};
+				this.timer = setTimeout(function(){
+					that.rotateFunc()
+				}, this.speed); //循环调用
+			}
+			return false;
+		}
+	}
+	scratchableLatex.init();
+</script>
+
+</body></html>
