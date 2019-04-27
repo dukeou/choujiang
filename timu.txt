@@ -1,1 +1,1 @@
-var category = "体育,地理,美食,电影"
+var category = "体育,美食,地理,电影"

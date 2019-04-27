@@ -117,7 +117,7 @@
   min-height: 250px;
   /*background-color: #D95E22;*/
 }
-.opposite-content-text{ display: table-cell; padding-top: 45%; text-align: center; color: white; font-size: 50px; }
+.opposite-content-text{ display: table-cell; padding-top: 35%; text-align: center; color: white; font-size: 80px; }
 
 .hide{
     display: none
